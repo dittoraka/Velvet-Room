@@ -49,7 +49,8 @@
 								<div class="sign_in_sec current" id="tab-1">
 									
 									<h3>Sign in</h3>
-									<form action="home">
+									<form action="/masuk" method="POST">
+										@csrf
 										<div class="row">
 											<div class="col-lg-12 no-pdd">
 												<div class="sn-field">
@@ -89,20 +90,27 @@
 								</div><!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
 									<div class="dff-tab current" id="tab-3">
-										<form>
+										<form action="/process" method="POST">
+											@csrf
 											<!-- <h3>Isi data Diri anda di bawah ini</h3> -->
 											<h3>Fill your Data here</h3>
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
+														<div class="sn-field">
+															<input type="text" name="email" placeholder="Email">
+															<i class="la la-user"></i>
+														</div>
+												</div>
+												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="name" placeholder="Full Name">
+														<input type="text" name="name" placeholder="User Name">
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="country" placeholder="Country">
-														<i class="la la-globe"></i>
+														<input type="text" name="nickname" placeholder="nickname">
+														<i class="la la-user"></i>
 													</div>
 												</div>
 												<!-- <div class="col-lg-12 no-pdd">

@@ -17,7 +17,7 @@
                                         </div>
                                     </div><!--username-dt end-->
                                     <div class="user-specs">
-                                        <h3>Farrell Gunawan</h3>
+                                        <h3>{{ session('nama')}}</h3>
                                         <span>Good Person ! ☺</span>
                                     </div>
                                 </div><!--user-profile end-->

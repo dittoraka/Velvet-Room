@@ -19,7 +19,7 @@ Route::prefix('users')->group(function () {
 });
 Route::get('home', function () {
     return view('user.home');
-});
+})->name('halaman');
 Route::get('achievement', function () {
     return view('user.achievement');
 });
@@ -46,8 +46,17 @@ Route::get('forum', function () {
 });
 Route::get('login', function () {
     return view('login');
-});
+})->name('loginuser');
 
+Route::get('admin', function () {
+    return view('admin.home');
+})->name('rumahadmin');
+Route::any('/process','login_controller@store');
+Route::any('/adminhome','admin_controller@load')->name('adminhome');
+Route::any('/updateuser','admin_controller@update');
+Route::any('/hapususer','admin_controller@delete');
+Route::any('/deleteuser','admin_controller@loaddelete');
+Route::any('/masuk','login_controller@login');
 
 
 
