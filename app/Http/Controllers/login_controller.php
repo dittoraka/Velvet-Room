@@ -10,6 +10,9 @@ class login_controller extends Controller
 {
     //
     public function store(Request $request){
+        $validatedata = $request->validate([
+            'email'=>'required'
+        ]);
         $username = $request->input('name');
         $email = $request->input('email');
         $nickname = $request->input('nickname');
@@ -20,6 +23,7 @@ class login_controller extends Controller
                 ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1']
             );
         }
+        
         return redirect()->route('loginuser');
     }
     public function login(Request $request){
