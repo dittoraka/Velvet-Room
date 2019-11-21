@@ -34,10 +34,9 @@
 						<div class="col-lg-6">
 							<div class="cmp-info">
 								<div class="cm-logo">
-									<img src="images/cm-logo.png" alt="">
-									<p>Workwise,  is a global freelancing platform and social networking where businesses and independent professionals connect and collaborate remotely</p>
-								</div><!--cm-logo end-->	
-								<img src="images/cm-main-img.png" alt="">			
+									<img src="logometawithtext.png" alt="">
+									<p>Velvet room is a social media that fit for gamers, made by gamer for gamers</p>
+								</div><!--cm-logo end-->		
 							</div><!--cmp-info end-->
 						</div>
 						<div class="col-lg-6">
@@ -47,7 +46,6 @@
 									<li data-tab="tab-2"><a href="#" title="">Sign up</a></li>				
 								</ul>			
 								<div class="sign_in_sec current" id="tab-1">
-									
 									<h3>Sign in</h3>
 									<form action="/masuk" method="POST">
 										@csrf

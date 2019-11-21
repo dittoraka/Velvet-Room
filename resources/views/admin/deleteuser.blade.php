@@ -36,7 +36,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="images/vr-logo.png" alt=""></a>
+						<a href="index.html" title=""><img src="logometa2.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form>
@@ -130,48 +130,14 @@
         <div class="col-lg-6">
                 <div class="login-sec">
                     <ul class="sign-control">
-                        <li data-tab="tab-1" class="current"><a href="#" title="">Delete</a></li>				
-                        <li data-tab="tab-2"><a href="#" title="">Update</a></li>				
+                        <li data-tab="tab-1" class="current"><a href="#" title="">Update</a></li>			
                     </ul>			
                     <div class="sign_in_sec current" id="tab-1">
-                        
-                        <h3>Delete</h3>
-                        <form action="/hapususer" method="POST">
+                         <!-- <h3>Isi data Diri anda di bawah ini</h3> -->
+						 <h3>Update</h3>
+                        <form action="/updateuser" method="POST">
                             @csrf
-                            <div class="row">
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="sn-field">
-                                        <!--input type="text" name="username" placeholder="Username"-->
-                                        <select name="username">
-                                                @foreach ($user as $item)
-                                                    <option value="{{$item->username}}">{{$item->username}}</option>
-                                                @endforeach
-                                        </select>
-                                        <i class="la la-user"></i>
-                                    </div><!--sn-field end-->
-                                </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <div class="checky-sec">
-                                        <div class="fgt-sec">
-                                            <label for="c1">
-                                                <span></span>
-                                            </label>
-                                        </div><!--fgt-sec end-->
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 no-pdd">
-                                    <button type="submit" value="submit">Delete</button>
-                                </div>
-                            </div>
-                        </form>
-                        <!--login-resources end-->
-                    </div><!--sign_in_sec end-->
-                    <div class="sign_in_sec" id="tab-2">
-                        <div class="dff-tab current" id="tab-3">
-                            <form action="/updateuser" method="POST">
-                                @csrf
-                                <!-- <h3>Isi data Diri anda di bawah ini</h3> -->
-                                <h3>Update</h3>
+                               
                                 <div class="row">
                                     <div class="col-lg-12 no-pdd">
                                         <div class="sn-field">
@@ -224,9 +190,9 @@
                                         <button type="submit" value="submit">Update</button>
                                     </div>
                                 </div>
-                            </form>
-                        </div><!--dff-tab end-->
-                    </div>		
+                        </form>
+                        <!--login-resources end-->
+                    </div><!--sign_in_sec end-->	
                 </div>
 		<footer>
 			<div class="footy-sec mn no-margin">

@@ -36,7 +36,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="images/vr-logo.png" alt=""></a>
+						<a href="index.html" title=""><img src="logometa2.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form>
@@ -121,7 +121,7 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
+							<h3 class="tc"><a href="login" title="">Logout</a></h3>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
@@ -142,7 +142,8 @@
                             <td>Password</td>
                             <td>Nickname</td>
                             <td>Email</td>
-                            <td>Action</td>
+							<td>Delete</td>
+							<td>Update</td>
                         </tr>
                         @foreach ($user as $isi)
                             <tr>
@@ -151,8 +152,9 @@
                                 <td>{{ $isi->password }}</td>
                                 <td>{{ $isi->nickname }}</td>
                                 <td>{{ $isi->email }}</td>
-                                <td><form action="/deleteuser" method="post"><input type="submit" name="btndelete" value="Action">@csrf</form></td>
-                            </tr>
+                                <td><form action="/deleteuser" method="post"><input type="hidden" value={{$isi->username}} name="username"><input type="submit" name="btndelete" value="Delete">@csrf</form></td>
+								<td><form action="/loaddelete" method="post"><input type="hidden" value={{$isi->username}} name="username"><input type="submit" name="btndelete" value="Update">@csrf</form></td>
+							</tr>
                         @endforeach
                     </table>
 				</div><!--companies-list end-->

@@ -28,11 +28,14 @@ class admin_controller extends Controller
     }
     public function delete(Request $request){
         $username = $request->input('username');
+        $temp = DB::table('user')->where('username',$username)->get();
+        DB::table('friends')->where('id_user',$temp[0]->id_user)->delete();
+        DB::table('friends')->where('id_friend',$temp[0]->id_user)->delete();
         DB::table('user')->where('username',$username)->delete();
         $data = DB::table('user')->get();
-        return view('admin.deleteuser',['user'=>$data]);
+        return view('admin.home',['user'=>$data]);
     }
-    public function loaddelete(){
+    public function loaddelete(Request $request){
         $data = DB::table('user')->get();
         return view('admin.deleteuser',['user'=>$data]);
     }
