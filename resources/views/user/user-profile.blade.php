@@ -26,6 +26,8 @@
                                         @endforeach
                                         @if ($bol)
                                             <li><a href="/tambahteman" title="" class="flww"><i class="la la-plus"></i>Add Friend</a></li>
+                                        @else
+                                        <li><a href="/tambahteman" title="" class="flww"><i class="la la-plus"></i>Unfriend</a></li>
                                         @endif
                                     </ul>
                                     <ul class="flw-status">

@@ -19,9 +19,11 @@ class login_controller extends Controller
         $password = $request->input('password');
         $cpassword = $request->input('repeat-password');
         if($password == $cpassword){
-            DB::table('user')->insert(
-                ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1']
-            );
+            if($validatedata == true){
+                DB::table('user')->insert(
+                    ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1']
+                );
+            }
         }
         
         return redirect()->route('loginuser');
