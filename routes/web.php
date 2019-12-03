@@ -51,6 +51,8 @@ Route::any('/updateuser','admin_controller@update');
 Route::any('/loaddelete','admin_controller@loaddelete');
 Route::any('/deleteuser','admin_controller@delete');
 Route::any('/masuk','login_controller@login');
+//punya avatar
+Route::any('/save','avatar_controller@save');
 
 
 

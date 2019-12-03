@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | AvaCreator</title>
+@extends('template')
+
+@section('isicontent')
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <script src="TemplateData/UnityProgress.js"></script>
@@ -11,8 +8,6 @@
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Build/avatar.json", {onProgress: UnityProgress});
     </script>
-  </head>
-  <body>
     <div class="webgl-content">
       <div id="unityContainer" style="width: 1280px; height: 720px"></div>
       <div class="footer">
@@ -21,5 +16,4 @@
         <div class="title">AvaCreator</div>
       </div>
     </div>
-  </body>
-</html>
+@endsection
