@@ -19,7 +19,7 @@ class login_controller extends Controller
         $password = $request->input('password');
         $cpassword = $request->input('repeat-password');
         if($password == $cpassword){
-            if($validatedata == true){
+            if($validatedata){
                 DB::table('user')->insert(
                     ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1']
                 );
