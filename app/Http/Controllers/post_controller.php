@@ -26,7 +26,7 @@ class post_controller extends Controller
             $data = array(array('id_user'=>0));
         }
         $user = DB::table('user')->get();
-        return view('user.my-profile-feed',['post'=>$data]);
+        return view('user.my-profile-feed',['user'=>$data]);
     }
     public function postdiss(Request $request){
         $isi = $request->input('description');
