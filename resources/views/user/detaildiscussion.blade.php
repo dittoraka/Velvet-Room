@@ -6,7 +6,7 @@
                 <div class="post_topbar">
                     <div class="usy-dt">
                         <div class="usy-name">
-                            <h3>Judul Discussion</h3>
+                            <h3>{{$discuss[0]->discuss_name}}</h3>
                             <span><img src="images/clock.png" alt="">3 min ago</span>
                         </div>
                     </div>
@@ -21,12 +21,7 @@
                 </div>
                 <div class="job_descp">   
                     <p>
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
-                        Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion Isi Discussion
+                        {{$discuss[0]->discuss_thread}}
                     </p>
                 </div>
                 <div class="job-status-bar">

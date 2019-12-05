@@ -16,7 +16,7 @@ class post_controller extends Controller
         if($data==null){
             $data = array(array('id_user'=>0));
         }
-        return view('user.home',['user'=>$data]);
+        return view('user.home',['post'=>$data]);
     }
     public function loadpostprofil(){
         $data1 = DB::table('user')
@@ -25,7 +25,18 @@ class post_controller extends Controller
         if($data==null){
             $data = array(array('id_user'=>0));
         }
-        return view('user.my-profile-feed',['user'=>$data]);
+        $user = DB::table('user')->get();
+        return view('user.my-profile-feed',['post'=>$data]);
+    }
+    public function postdiss(Request $request){
+        $isi = $request->input('description');
+        $post = $request->input('title');
+        $data1 = DB::table('user')
+                ->where('username', session('nama'))->get();
+        DB::table('discussion')->insert(
+            ['id_user'=>$data1[0]->id_user,'discuss_name'=>$post,'discuss_thread'=>$isi,'likes'=>0,'link'=>'']
+        );
+        return redirect()->route('discus');
     }
     public function ngepost(Request $request){
         $post = $request->input('description');
