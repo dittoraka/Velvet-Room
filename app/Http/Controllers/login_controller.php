@@ -31,6 +31,7 @@ class login_controller extends Controller
     public function login(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
+        $id = 0;
         $data = DB::table('user')->get();
         $booleans = false;
         if($username == "admin" && $password == "admin"){
@@ -39,10 +40,12 @@ class login_controller extends Controller
         foreach ($data as $isi) {
             if($isi->username == $username && $isi->password == $password){
                 $booleans = true;
+                $id = $isi->id_user;
             }
         }
         if($booleans){
             $request->session()->put('nama',$username);
+            $request->session()->put('iduser',$id);
             return redirect()->route('halaman');
         }
     }
