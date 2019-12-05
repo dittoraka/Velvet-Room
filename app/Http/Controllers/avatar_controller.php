@@ -10,7 +10,7 @@ class avatar_controller extends Controller
 {
     public function save(Request $request){
 		
-		$idava = $request->input('id_avatar');
+		$idava = session('iduser');
 		$filename = $request->input('filename');
         DB::table('avatar')->insert(
             ['id_avatar'=>$idava,'filename'=>$filename]
