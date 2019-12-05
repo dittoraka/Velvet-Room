@@ -22,9 +22,8 @@ Route::get('achievement', function () {
     return view('user.achievement');
 });
 Route::get('profiles', 'friend_controller@tampilin');
-Route::get('discussion', function () {
-    return view('user.discussion');
-});
+Route::get('discussion', 'master_controller@juduldis');
+Route::get('getdiscussion', 'master_controller@detaildis');
 Route::get('messages', function () {
     return view('user.messages');
 });
