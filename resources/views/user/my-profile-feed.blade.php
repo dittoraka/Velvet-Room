@@ -51,6 +51,7 @@
                         <div class="main-ws-sec">
                             <div class="user-tab-sec rewivew">
                                 <h3>{{session('nama')}}</h3>
+                                <a href="/ava" title="" class="follow">Edit Avatar</a>
                                 <div class="star-descp">
                                     <span>Gamer Kelas 0</span>
                                     <ul>

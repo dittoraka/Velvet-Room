@@ -20,6 +20,15 @@
 <link rel="stylesheet" type="text/css" href="{{asset('lib/slick/slick-theme.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+
+<link rel="shortcut icon" href="{{asset('TemplateData/favicon.ico')}}">
+<link rel="stylesheet" href="{{asset('TemplateData/style.css')}}">
+<script src="{{asset('TemplateData/UnityProgress.js')}}"></script>
+<script src="{{asset('Build/UnityLoader.js')}}"></script>
+<script>
+    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/avatar.json", {onProgress: UnityProgress});
+</script>
+
 </head>
 
 <body oncontextmenu="return false;">
