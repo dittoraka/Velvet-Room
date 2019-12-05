@@ -18,11 +18,12 @@ Route::prefix('users')->group(function () {
     
 });
 Route::get('home','post_controller@loadpost')->name('halaman');
+Route::get('postdis','post_controller@postdiss');
 Route::get('achievement', function () {
     return view('user.achievement');
 });
 Route::get('profiles', 'friend_controller@tampilin');
-Route::get('discussion', 'master_controller@juduldis');
+Route::get('discussion', 'master_controller@juduldis')->name('discus');
 Route::get('getdiscussion', 'master_controller@detaildis');
 Route::get('messages', function () {
     return view('user.messages');

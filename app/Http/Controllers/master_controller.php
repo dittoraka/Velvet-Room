@@ -8,12 +8,21 @@ use Illuminate\Routing\Redirector;
 
 class master_controller extends Controller
 {
+    // public function juduldis(){
+    //     $data = DB::table('discussion')->get();
+    //     return view('user.juduldiscussion',['user'=>$data]);
+    // }
+    public function detaildis(Request $request){
+        $id = $request->input('iddis');
+        $data = DB::table('discussion')->
+            where('id_discussion',$id)->get();
+        return view('user.detaildiscussion',['discuss'=>$data]);
+    }
     public function juduldis(){
         $data = DB::table('discussion')->get();
-        return view('user.juduldiscussion',['user'=>$data]);
-    }
-    public function detaildis(){
-        $data = DB::table('discussion')->get();
-        return view('user.detaildiscussion',['user'=>$data]);
+        if($data==null){
+            $data = array(array('id_user'=>0));
+        }
+        return view('user.juduldiscussion',['discuss'=>$data]);
     }
 }
