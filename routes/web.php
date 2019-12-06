@@ -43,6 +43,7 @@ Route::get('login', function () {
 Route::get('admin', function () {
     return view('admin.home');
 })->name('rumahadmin');
+Route::any('/group','master_controller@opengroup');
 Route::get('/tambahteman', 'friend_controller@addfriend');
 Route::get('/posting', 'post_controller@ngepost');
 Route::any('/process','login_controller@store');

@@ -47,7 +47,7 @@
                                 <div class="post-st">
                                     <ul>
                                         <li><a class="post_project" href="#" title="">Post Status</a></li>
-                                        <li><a class="post-jb active" href="#" title="">Post a Discussion</a></li>
+                                        {{-- <li><a class="post-jb active" href="#" title="">Post a Discussion</a></li> --}}
                                     </ul>
                                 </div><!--post-st end-->
                             </div><!--post-topbar end-->

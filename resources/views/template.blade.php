@@ -39,7 +39,7 @@
 			<div class="container">
 				<div class="header-data">
 					<div class="logo">
-						<a href="index.html" title=""><img src="logometa2.png" alt=""></a>
+						<a href="home" title=""><img src="logometa2.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
 						<form>
@@ -50,9 +50,9 @@
 					<nav>
 						<ul>
 							<li>
-								<a href="home" title="">
+								<a href="group" title="">
 									<span><img src="images/icon1.png" alt=""></span>
-									Home
+									Group
 								</a>
 							</li>
 							<li>

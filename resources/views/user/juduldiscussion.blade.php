@@ -63,7 +63,7 @@
                                             <div class="post_topbar">
                                                 <div class="usy-dt">
                                                     <div class="usy-name">
-                                                        <h3>John Doe</h3>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

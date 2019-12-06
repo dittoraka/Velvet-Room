@@ -18,6 +18,10 @@ class master_controller extends Controller
             where('id_discussion',$id)->get();
         return view('user.detaildiscussion',['discuss'=>$data]);
     }
+    public function opengroup(){
+        $data = DB::table('user')->get();
+        return view('user.group',['user'=>$data]);
+    }
     public function juduldis(){
         $data = DB::table('discussion')->get();
         if($data==null){

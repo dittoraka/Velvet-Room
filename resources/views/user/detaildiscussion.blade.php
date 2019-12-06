@@ -1,6 +1,25 @@
 @extends('template')
 @section('isicontent')
-    
+<div class="post-popup job_post">
+        <div class="post-project">
+            <h3>Post a Comment</h3>
+            <div class="post-project-fields">
+                <form action="/postcomm">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <textarea name="description" placeholder="Your Comment"></textarea>
+                        </div>
+                        <div class="col-lg-12">
+                            <ul>
+                                <li><button class="active" type="submit" value="post">Post</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
+            </div><!--post-project-fields end-->
+            <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+        </div><!--post-project end-->
+    </div> 
 <section class="companies-info">
     <div class="post-bar">
                 <div class="post_topbar">
