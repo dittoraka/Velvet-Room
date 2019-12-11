@@ -4,7 +4,7 @@
 	$server_password = "";
 	$dbName = "velvet_room";
 	
-	$userID = $_POST["userID"];
+	$userID = $_SESSION["iduser"];
 	$fileupload = $_POST["fileupload"];
 	
 	$conn = new mysqli($servername,$server_username,$server_password,$dbName);
