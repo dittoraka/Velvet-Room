@@ -12,11 +12,23 @@ class post_controller extends Controller
     public function loadpost(){
         $data1 = DB::table('user')
                 ->where('username', session('nama'))->get();
-        $data = DB::table('user_post')->where('id_user',$data1[0]->id_user)->get();
+        $friend = DB::table('friends')
+                ->where('id_user', $data1[0]->id_user)->get();
+        // $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->get();
+        if($friend){
+            $data = DB::table('user_post')->get();
+        }else{
+            $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->orwhere('id_user',$friend)->get();
+        }
+        
+        $komen = DB::table('post_comment')->get();
+        if($komen==null){
+            $komen = array(array('id_user'=>0));
+        }
         if($data==null){
             $data = array(array('id_user'=>0));
         }
-        return view('user.home',['post'=>$data]);
+        return view('user.home',['post'=>$data,'komen'=>$komen,'teman'=>$friend]);
     }
     public function loadpostprofil(){
         $data1 = DB::table('user')
@@ -43,7 +55,15 @@ class post_controller extends Controller
         $data1 = DB::table('user')
                 ->where('username', session('nama'))->get();
         DB::table('user_post')->insert(
-            ['id_user'=>$data1[0]->id_user,'post'=>$post,'likes'=>0,'link'=>'']
+            ['id_user'=>$data1[0]->id_user,'post'=>$post,'likes'=>0,'link'=>'','nama_user'=>session('nickname')]
+        );
+        return redirect()->route('halaman');
+    }
+    public function ngomen(Request $request){
+        $id=$request->input('id');
+        $comment = $request->input('komen');
+        DB::table('post_comment')->insert(
+            ['id_post'=>$id,'comments'=>$comment,'likes'=>0,'nickname'=>session('nickname')]
         );
         return redirect()->route('halaman');
     }
