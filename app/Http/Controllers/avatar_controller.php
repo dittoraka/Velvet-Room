@@ -14,7 +14,11 @@ class avatar_controller extends Controller
 		$filename = $request->input('filename');
         DB::table('avatar')->insert(
             ['id_avatar'=>$idava,'filename'=>$filename]
+<<<<<<< HEAD
         );
+=======
+		);
+>>>>>>> f53c38a80bbd66fa8711b250656538b9da3093d6
         // $servername = "localhost";
 	    // $server_username = "root";
 	    // $server_password = "";
