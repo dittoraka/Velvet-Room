@@ -83,7 +83,7 @@
 											<div class="job-status-bar">
 												<ul class="like-com">
 													<li>
-														<a href="#" class="active"><i class="fas fa-heart"></i> Like</a>
+														<a href="/ngelike" class="active"><i class="fas fa-heart"></i> Like</a>
 														<img src="images/liked-img.png" alt="">
 														<span>25</span>
 													</li>

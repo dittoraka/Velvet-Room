@@ -128,7 +128,8 @@
 							  	<div class="tab-pane fade" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
 							  		<div class="acc-setting">
 										<h3>Account Setting</h3>
-										<form>
+										<form action="/gantipass" method="POST">
+											@csrf
 											<div class="cp-field">
 												<h5>Old Password</h5>
 												<div class="cpp-fiel">

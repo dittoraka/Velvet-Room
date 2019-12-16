@@ -15,7 +15,6 @@ class avatar_controller extends Controller
         DB::table('avatar')->insert(
             ['id_avatar'=>$idava,'filename'=>$filename]
         );
-        
         // $servername = "localhost";
 	    // $server_username = "root";
 	    // $server_password = "";

@@ -13,7 +13,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="company_profile_info">
                                 <div class="company-up-info">
-                                    <img src="images/resources/pf-icon1.png" alt="">
+                                    <img src="profil/{{$item->profil_picture}}" alt="">
                                     <h3>{{$item->nickname}}</h3>
                                     <ul>
                                         <?php $bol = true;?>

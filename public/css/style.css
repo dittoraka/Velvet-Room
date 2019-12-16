@@ -4120,7 +4120,9 @@ a:hover {
 .chat-list {
 	float: left;
 	width: 100%;
+	overflow: auto;
 	min-height: 390px;
+	max-height: 390px;
 }
 .conv-list {
 	float: left;
@@ -4213,6 +4215,7 @@ a:hover {
 .chat-hist {
 	float: left;
 	width: 100%;
+	overflow:auto;
 	background-color: #fff;
 	height: 280px;
 }
@@ -4309,6 +4312,7 @@ a:hover {
 	float: left;
 	width: 100%;
 	border-top: 1px solid #e6e6e6;
+	background-color:white;
 	padding-top: 15px;
 }
 .typing-msg form {
@@ -5044,7 +5048,9 @@ a:hover {
 .messages-line {
 	float: left;
 	width: 100%;
-	height: 604px;
+	overflow:auto;
+	min-height:100px;
+	max-height: 604px;
 }
 
 /* ============== message-send-area ============ */

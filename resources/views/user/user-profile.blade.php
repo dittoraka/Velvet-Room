@@ -1,7 +1,7 @@
 @extends('template')
 @section('isicontent')
 <section class="cover-sec">
-    <img src="images/resources/cover-img.jpg" alt="">
+<img src="background/{{$user[0]->back_image}}" style="height:500px" alt="">
 </section>
 
 
@@ -14,7 +14,7 @@
                         <div class="main-left-sidebar">
                             <div class="user_profile">
                                 <div class="user-pro-img">
-                                    <img src="images/resources/user-pro-img.png" alt="">
+                                <img src="profil/{{$user[0]->profil_picture}}" alt="">
                                 </div><!--user-pro-img end-->
                                 <div class="user_pro_status">
                                     <ul class="flw-hr">
@@ -27,7 +27,7 @@
                                         @if ($bol)
                                             <li><a href="/tambahteman" title="" class="flww"><i class="la la-plus"></i>Add Friend</a></li>
                                         @else
-                                        <li><a href="/tambahteman" title="" class="flww"><i class="la la-plus"></i>Unfriend</a></li>
+                                        <li><a href="/hapusteman" title="" class="flww"><i class="la la-plus"></i>Unfriend</a></li>
                                         @endif
                                     </ul>
                                     <ul class="flw-status">
@@ -137,9 +137,9 @@
                                         <div class="post-bar">
                                             <div class="post_topbar">
                                                     <div class="usy-dt">
-                                                        <img src="images/resources/us-pic.png" alt="">
+                                                        <img src="profil/{{$user[0]->profil_picture}}" style="width:50px;height:50px" alt="">
                                                         <div class="usy-name">
-                                                            <h3>{{session('nama')}}</h3>
+                                                            <h3>{{$item->nama_user}}</h3>
                                                         </div>
                                                     </div>
                                                     <div class="ed-opts">
@@ -154,18 +154,38 @@
                                                     </div>
                                                 </div>
                                                 <div class="job_descp">
-                                                    <p>{{$item->post}}</p>
-                                                </div>
-                                                <div class="job-status-bar">
-                                                    <ul class="like-com">
-                                                        <li>
-                                                            <a href="#"><i class="fas fa-heart"></i> Like</a>
-                                                            <img src="images/liked-img.png" alt="">
-                                                            <span>{{$item->likes}}</span>
-                                                        </li> 
-                                                        <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{$item->likes}}</a></li>
-                                                    </ul>
-                                                </div>
+                                                        @if ($item->post == null)
+                                                            <span><img src="upload/{{$item->gambar}}" alt=""></span>
+                                                        @else
+                                                            <p>{{$item->post}}</p>
+                                                        @endif
+                                                    </div>
+                                                    <div class="job-status-bar">
+                                                        <ul class="like-com">
+                                                            <li>
+                                                                <a href="#"><i class="fas fa-heart"></i> Like</a>
+                                                                <img src="images/liked-img.png" alt="">
+                                                                <span>{{$item->likes}}</span>
+                                                            </li> 
+                                                            <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{$item->likes}}</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div>
+                                                        @foreach ($komen as $ko)
+                                                            @if ($ko->id_post == $item->id_post)
+                                                                <h2 style="font-weight:bold">{{$ko->nickname}}<h2>
+                                                                {{$ko->comments}}
+                                                            @endif
+                                                        </br>
+                                                        @endforeach
+                                                    </div>
+                                                    <div class="post-topbar">
+                                                            <form action="/komen">
+                                                                <input type="text" name="komen" placeholder="Write something.">
+                                                                <input type="hidden" name="id" value={{$item->id_post}}>
+                                                                <button type="submit">Comment</button>
+                                                            </form><!--post-st end-->
+                                                    </div>
                                             </div>     
                                         @endforeach
                                     <div class="process-comm">
@@ -221,66 +241,16 @@
                                     <h3>Gallery</h3>
                                     <div class="gallery_pf">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img1.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img2.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img3.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img4.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img5.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img6.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img7.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img8.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img9.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                <div class="gallery_pt">
-                                                    <img src="images/resources/pf-img10.jpg" alt="">
-                                                    <a href="#" title=""><img src="images/all-out.png" alt=""></a>
-                                                </div><!--gallery_pt end-->
-                                            </div>
+                                            @foreach ($post as $item)
+                                                @if ($item->post == null)
+                                                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                        <div class="gallery_pt">
+                                                            <img src="upload/{{$item->gambar}}" alt="">
+                                                            <a href="#" title=""><img src="images/all-out.png" alt=""></a>
+                                                        </div><!--gallery_pt end-->
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                         </div>
                                     </div><!--gallery_pf end-->
                                 </div><!--portfolio-gallery-sec end-->
@@ -299,19 +269,16 @@
                                 </div>
                                 <div class="pf-gallery">
                                     <ul>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery1.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery2.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery3.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery4.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery5.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery6.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery7.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery8.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery9.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery10.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery11.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/resources/pf-gallery12.png" alt=""></a></li>
-                                    </ul>
+                                        @foreach ($post as $item)
+                                            @if ($item->post == null)
+                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                                                    <div class="gallery_pt">
+                                                        <li style="width:50px"><a href="#" title=""><img src="upload/{{$item->gambar}}" style="width:50px" alt=""></a></li>
+                                                    </div><!--gallery_pt end-->
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                        </ul>
                                 </div><!--pf-gallery end-->
                             </div><!--widget-portfolio end-->
                         </div><!--right-sidebar end-->
