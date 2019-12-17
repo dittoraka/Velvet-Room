@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 14 Nov 2019 pada 16.24
+-- Waktu pembuatan: 17 Des 2019 pada 10.54
 -- Versi server: 10.1.36-MariaDB
 -- Versi PHP: 7.2.11
 
@@ -27,19 +27,46 @@ USE `velvet_room`;
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `avatar`
+--
+
+DROP TABLE IF EXISTS `avatar`;
+CREATE TABLE `avatar` (
+  `id_avatar` int(11) NOT NULL,
+  `filename` mediumblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `avatar`
+--
+
+INSERT INTO `avatar` (`id_avatar`, `filename`) VALUES
+(0, ''),
+(0, ''),
+(0, '');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `discussion`
 --
 
 DROP TABLE IF EXISTS `discussion`;
-CREATE TABLE IF NOT EXISTS `discussion` (
-  `id_discussion` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `discussion` (
+  `id_discussion` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `discuss_name` varchar(50) NOT NULL,
   `discuss_thread` text NOT NULL,
   `likes` int(11) NOT NULL,
-  `link` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_discussion`)
+  `link` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `discussion`
+--
+
+INSERT INTO `discussion` (`id_discussion`, `id_user`, `discuss_name`, `discuss_thread`, `likes`, `link`) VALUES
+(4, 2, 'aaaa', 'sssss', 0, '');
 
 -- --------------------------------------------------------
 
@@ -48,11 +75,44 @@ CREATE TABLE IF NOT EXISTS `discussion` (
 --
 
 DROP TABLE IF EXISTS `discussion_comment`;
-CREATE TABLE IF NOT EXISTS `discussion_comment` (
-  `id_comment` int(11) NOT NULL,
-  `id_person` int(11) NOT NULL,
+CREATE TABLE `discussion_comment` (
   `likes` int(11) NOT NULL,
-  `text` text NOT NULL
+  `text` text NOT NULL,
+  `dis_comment_id` int(11) NOT NULL,
+  `nickname` varchar(20) NOT NULL,
+  `id_dis` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `discussion_comment`
+--
+
+INSERT INTO `discussion_comment` (`likes`, `text`, `dis_comment_id`, `nickname`, `id_dis`) VALUES
+(0, 'opo seh', 1, 'NickBaruCie', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `discussion_like`
+--
+
+DROP TABLE IF EXISTS `discussion_like`;
+CREATE TABLE `discussion_like` (
+  `id_dis` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `discussion_report`
+--
+
+DROP TABLE IF EXISTS `discussion_report`;
+CREATE TABLE `discussion_report` (
+  `id_discussion` int(11) NOT NULL,
+  `id_user_report` int(11) NOT NULL,
+  `alasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -62,10 +122,18 @@ CREATE TABLE IF NOT EXISTS `discussion_comment` (
 --
 
 DROP TABLE IF EXISTS `friends`;
-CREATE TABLE IF NOT EXISTS `friends` (
+CREATE TABLE `friends` (
   `id_user` int(11) NOT NULL,
   `id_friend` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `friends`
+--
+
+INSERT INTO `friends` (`id_user`, `id_friend`) VALUES
+(6, 4),
+(4, 6);
 
 -- --------------------------------------------------------
 
@@ -74,12 +142,27 @@ CREATE TABLE IF NOT EXISTS `friends` (
 --
 
 DROP TABLE IF EXISTS `groups`;
-CREATE TABLE IF NOT EXISTS `groups` (
-  `id_group` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `groups` (
+  `id_group` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `deskripsi` text NOT NULL,
-  PRIMARY KEY (`id_group`)
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `groups`
+--
+
+INSERT INTO `groups` (`id_group`, `nama`, `deskripsi`) VALUES
+(1, 'Curhatan Para Gamer(CPG)', 'game berisi curhatan kami'),
+(2, 'Group asal', 'hai'),
+(3, 'dummy1', 'halo'),
+(4, 'dummy2', 'halo'),
+(5, 'dummy3', 'halo'),
+(6, 'dummy4', 'halo'),
+(7, 'dummy5', 'halo'),
+(8, 'dummy6', 'halo'),
+(9, 'dummy7', 'halo'),
+(10, 'dummy8', 'halo');
 
 -- --------------------------------------------------------
 
@@ -88,11 +171,20 @@ CREATE TABLE IF NOT EXISTS `groups` (
 --
 
 DROP TABLE IF EXISTS `group_post_comment`;
-CREATE TABLE IF NOT EXISTS `group_post_comment` (
+CREATE TABLE `group_post_comment` (
   `id_post` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
-  `comments` varchar(255) NOT NULL
+  `comments` varchar(255) NOT NULL,
+  `nickname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `group_post_comment`
+--
+
+INSERT INTO `group_post_comment` (`id_post`, `id_user`, `comments`, `nickname`) VALUES
+(1, 2, 'baka', 'NickBaruCie'),
+(2, 4, 'apa', 'dittoraka');
 
 -- --------------------------------------------------------
 
@@ -101,13 +193,61 @@ CREATE TABLE IF NOT EXISTS `group_post_comment` (
 --
 
 DROP TABLE IF EXISTS `message`;
-CREATE TABLE IF NOT EXISTS `message` (
-  `id_message` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `message` (
+  `id_message` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `id_penerima` int(11) NOT NULL,
-  `message` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_message`)
+  `message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `message`
+--
+
+INSERT INTO `message` (`id_message`, `id_user`, `id_penerima`, `message`) VALUES
+(17, 2, 3, 'hai'),
+(18, 2, 3, 'hai'),
+(19, 2, 3, 'hai'),
+(20, 2, 4, 'ka'),
+(21, 3, 2, 'apa we'),
+(22, 3, 2, 'apa we'),
+(23, 3, 2, 'apa we'),
+(24, 2, 3, 'gapapa'),
+(25, 3, 2, 'yaudh'),
+(26, 3, 2, 'yaudh'),
+(27, 3, 2, 'yaudh'),
+(28, 3, 2, 'yaudh'),
+(29, 3, 2, 'yaudh'),
+(30, 3, 2, 'yaudh'),
+(31, 3, 2, 'yaudh'),
+(32, 3, 2, 'yaudh'),
+(33, 2, 3, 'gapapa'),
+(34, 3, 6, 'aww'),
+(35, 3, 6, 'aww'),
+(36, 3, 6, 'aww'),
+(37, 3, 8, 'oe'),
+(38, 3, 8, 'hehe'),
+(39, 3, 8, 'hehe'),
+(40, 2, 9, 'woe'),
+(41, 2, 9, 'yaudh'),
+(42, 2, 9, 'aww'),
+(43, 2, 9, 'aww'),
+(44, 2, 4, 'aaaaaaaaaa'),
+(45, 2, 4, 'ssssssssssssssssssssss'),
+(46, 2, 4, 'dddddddddddddddddddddddddd'),
+(47, 2, 4, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(48, 2, 4, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(49, 2, 4, 'aaaaaaaaaaaaaaaaaaaaaaa'),
+(50, 3, 2, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(51, 2, 3, 'gapapa'),
+(52, 2, 3, 'gapapa'),
+(53, 2, 3, 'ya dah yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(54, 2, 3, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'),
+(55, 2, 3, 'ea'),
+(56, 3, 2, 'opo seh'),
+(57, 3, 2, 'opo seh'),
+(58, 3, 2, 'halo'),
+(59, 2, 3, 'apa kabar ?');
 
 -- --------------------------------------------------------
 
@@ -116,12 +256,29 @@ CREATE TABLE IF NOT EXISTS `message` (
 --
 
 DROP TABLE IF EXISTS `post_comment`;
-CREATE TABLE IF NOT EXISTS `post_comment` (
-  `id_commentuser` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `post_comment` (
+  `id_commentuser` int(11) NOT NULL,
   `comments` text NOT NULL,
   `likes` int(11) NOT NULL,
-  PRIMARY KEY (`id_commentuser`)
+  `id_post` int(11) NOT NULL,
+  `nickname` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `post_comment`
+--
+
+INSERT INTO `post_comment` (`id_commentuser`, `comments`, `likes`, `id_post`, `nickname`) VALUES
+(9, 'Makan apa', 0, 5, 'dittoraka'),
+(10, 'kuching', 0, 5, 'NickBaruCie'),
+(11, 'wkw', 0, 9, 'NickBaruCie'),
+(12, 'okay', 0, 9, 'ariz'),
+(13, 'baka', 0, 1, 'NickBaruCie'),
+(14, 'gajelas', 0, 8, 'NickBaruCie'),
+(15, 'toxic', 0, 8, 'NickBaruCie'),
+(17, 'hmm', 0, 25, 'kashiki'),
+(19, 'hmmm', 0, 25, 'dittoraka'),
+(24, 'awww', 0, 32, 'NickBaruCie');
 
 -- --------------------------------------------------------
 
@@ -130,11 +287,53 @@ CREATE TABLE IF NOT EXISTS `post_comment` (
 --
 
 DROP TABLE IF EXISTS `post_group`;
-CREATE TABLE IF NOT EXISTS `post_group` (
+CREATE TABLE `post_group` (
   `id_group` int(11) NOT NULL,
-  `id_grouppost` int(11) NOT NULL,
   `post` text NOT NULL,
-  `link` varchar(255) NOT NULL
+  `link` varchar(255) NOT NULL,
+  `nama_user` varchar(20) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `likes` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `post_group`
+--
+
+INSERT INTO `post_group` (`id_group`, `post`, `link`, `nama_user`, `id_post`, `likes`) VALUES
+(2, 'Farrel noob', '', 'sayaraka', 1, 0),
+(3, 'Halo', '', 'sayaraka', 2, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `post_like`
+--
+
+DROP TABLE IF EXISTS `post_like`;
+CREATE TABLE `post_like` (
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `post_like`
+--
+
+INSERT INTO `post_like` (`id_post`, `id_user`) VALUES
+(0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `post_report`
+--
+
+DROP TABLE IF EXISTS `post_report`;
+CREATE TABLE `post_report` (
+  `id_post` int(11) NOT NULL,
+  `id_user_report` int(11) NOT NULL,
+  `alasan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -144,24 +343,30 @@ CREATE TABLE IF NOT EXISTS `post_group` (
 --
 
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id_user` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
   `id_avatar` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(12) NOT NULL,
   `email` varchar(50) NOT NULL,
   `nickname` varchar(16) NOT NULL,
-  PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `profil_picture` varchar(100) NOT NULL,
+  `back_image` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id_user`, `id_avatar`, `username`, `password`, `email`, `nickname`) VALUES
-(2, 1, 'ariesliantono', 'titijelek2', 'nowiplaydota71@gmail.com', 'NickBaruCie'),
-(3, 1, 'benedictoRaka', 'titijelek2', 'aris@gmail.com', 'aris'),
-(4, 1, 'sayaraka', '123', 'BenedictoRaka@gmail.com', 'dittoraka');
+INSERT INTO `user` (`id_user`, `id_avatar`, `username`, `password`, `email`, `nickname`, `profil_picture`, `back_image`) VALUES
+(2, 1, 'ariesliantono', '1234', 'nowiplaydota71@gmail.com', 'NickBaruCie', '1576506704.png', '1576218665.png'),
+(3, 1, 'benedictoRaka', 'titijelek2', 'aris@gmail.com', 'aris', '1576197790.png', 'cover-img.jpg'),
+(4, 1, 'sayaraka', '141', 'BenedictoRaka@gmail.com', 'dittoraka', '1576165872.png', '1576171229.jpg'),
+(5, 1, 'arislian', '123', 'newemail@gmail.com', 'kashiki', 'far-circle.png', 'cover-img.jpg'),
+(6, 1, 'arisliantono', '123', 'arislia@gmail.com', 'ariz', 'far-circle.png', 'cover-img.jpg'),
+(7, 1, 'ariz', '123', 'kuro@gmail.com', 'kuro', '1576195125.jpg', '1576195165.jpg'),
+(8, 1, 'daniel', '123', 'test@gmail.com', 'DanielN', '1576198177.png', '1576198072.jpg'),
+(9, 1, 'dummy', '12', 'new@gmail.com', 'dum', 'far-circle.png', 'cover-img.jpg');
 
 -- --------------------------------------------------------
 
@@ -170,10 +375,20 @@ INSERT INTO `user` (`id_user`, `id_avatar`, `username`, `password`, `email`, `ni
 --
 
 DROP TABLE IF EXISTS `user_group`;
-CREATE TABLE IF NOT EXISTS `user_group` (
+CREATE TABLE `user_group` (
   `id_group` int(11) NOT NULL,
   `id_user` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user_group`
+--
+
+INSERT INTO `user_group` (`id_group`, `id_user`) VALUES
+(0, 0),
+(1, 2),
+(2, 4),
+(3, 4);
 
 -- --------------------------------------------------------
 
@@ -182,14 +397,132 @@ CREATE TABLE IF NOT EXISTS `user_group` (
 --
 
 DROP TABLE IF EXISTS `user_post`;
-CREATE TABLE IF NOT EXISTS `user_post` (
+CREATE TABLE `user_post` (
   `id_user` int(11) NOT NULL,
   `post` text NOT NULL,
   `likes` int(11) NOT NULL,
   `link` varchar(255) NOT NULL,
-  `id_post` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_post`)
+  `id_post` int(11) NOT NULL,
+  `nama_user` varchar(20) NOT NULL,
+  `gambar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `user_post`
+--
+
+INSERT INTO `user_post` (`id_user`, `post`, `likes`, `link`, `id_post`, `nama_user`, `gambar`) VALUES
+(2, '', 0, '', 17, 'NickBaruCie', '1576133148.jpg'),
+(2, '', 0, '', 18, 'NickBaruCie', '1576136928.jpeg'),
+(4, 'Gambar Teros', 0, '', 20, 'dittoraka', ''),
+(4, '', 0, '', 24, 'dittoraka', '1576171035.jpg'),
+(7, '', 0, '', 25, 'kuro', '1576195185.jpg'),
+(3, '', 0, '', 26, 'aris', '1576197874.jpg'),
+(2, 'Edit Pertama', 0, '', 32, 'NickBaruCie', '1576441776.jpg');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `discussion`
+--
+ALTER TABLE `discussion`
+  ADD PRIMARY KEY (`id_discussion`);
+
+--
+-- Indeks untuk tabel `discussion_comment`
+--
+ALTER TABLE `discussion_comment`
+  ADD PRIMARY KEY (`dis_comment_id`);
+
+--
+-- Indeks untuk tabel `groups`
+--
+ALTER TABLE `groups`
+  ADD PRIMARY KEY (`id_group`);
+
+--
+-- Indeks untuk tabel `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`id_message`);
+
+--
+-- Indeks untuk tabel `post_comment`
+--
+ALTER TABLE `post_comment`
+  ADD PRIMARY KEY (`id_commentuser`);
+
+--
+-- Indeks untuk tabel `post_group`
+--
+ALTER TABLE `post_group`
+  ADD PRIMARY KEY (`id_post`);
+
+--
+-- Indeks untuk tabel `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indeks untuk tabel `user_post`
+--
+ALTER TABLE `user_post`
+  ADD PRIMARY KEY (`id_post`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `discussion`
+--
+ALTER TABLE `discussion`
+  MODIFY `id_discussion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT untuk tabel `discussion_comment`
+--
+ALTER TABLE `discussion_comment`
+  MODIFY `dis_comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT untuk tabel `groups`
+--
+ALTER TABLE `groups`
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `message`
+--
+ALTER TABLE `message`
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT untuk tabel `post_comment`
+--
+ALTER TABLE `post_comment`
+  MODIFY `id_commentuser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT untuk tabel `post_group`
+--
+ALTER TABLE `post_group`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `user_post`
+--
+ALTER TABLE `user_post`
+  MODIFY `id_post` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
