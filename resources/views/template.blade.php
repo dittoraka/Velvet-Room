@@ -42,7 +42,7 @@
 						<a href="home" title=""><img src="logometa2.png" alt=""></a>
 					</div><!--logo end-->
 					<div class="search-bar">
-						<form>
+						<form action="/searchnav">
 							<input type="text" name="search" placeholder="Search...">
 							<button type="submit"><i class="la la-search"></i></button>
 						</form>
@@ -53,6 +53,12 @@
 								<a href="group" title="">
 									<span><img src="images/icon1.png" alt=""></span>
 									Group
+								</a>
+							</li>
+							<li>
+								<a href="badges" title="">
+									<span><img src="images/icon1.png" alt=""></span>
+									badges
 								</a>
 							</li>
 							<li>
@@ -73,7 +79,7 @@
 									Profiles
 								</a>
 								<ul>
-									<li><a href="user-profile" title="">User Profile</a></li>
+									{{-- <li><a href="user-profile" title="">User Profile</a></li> --}}
 									<li><a href="my-profile-feed" title="">my-profile-feed</a></li>
 								</ul>
 							</li>
@@ -125,7 +131,7 @@
 							  				</div><!--notification-info -->
 						  				</div>
 						  				<div class="view-all-nots">
-						  					<a href="messages" title="">View All Messsages</a>
+						  					<a href="showMessage" title="">View All Messsages</a>
 						  				</div>
 									</div><!--nott-list end-->
 								</div><!--notification-box end-->
@@ -190,9 +196,8 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="images/resources/far-1.png" alt="">
-							<a href="#" title="">Farrell</a>
-							<i class="la la-sort-down"></i>
+							<img src="profil/{{session("profil")}}" style="width:35px;height:35px" alt="">
+							<a href="#" title="">Option</a>
 						</div>
 						<div class="user-account-settingss">
 							<h3>Online Status</h3>

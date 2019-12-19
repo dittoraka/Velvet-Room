@@ -985,11 +985,11 @@ main {
 	border-left: 1px solid #e4e4e4;
 	border-bottom: 1px solid #e4e4e4;
 	border-right: 1px solid #e4e4e4;
-	-webkit-box-shadow: 0 0 1px rgba(0,0,0,0.24);
+	/* -webkit-box-shadow: 0 0 1px rgba(0,0,0,0.24);
 	-moz-box-shadow: 0 0 1px rgba(0,0,0,0.24);
 	-ms-box-shadow: 0 0 1px rgba(0,0,0,0.24);
 	-o-box-shadow: 0 0 1px rgba(0,0,0,0.24);
-	box-shadow: 0 0 1px rgba(0,0,0,0.24);
+	box-shadow: 0 0 1px rgba(0,0,0,0.24); */
 	margin-bottom: 20px;
 }
 .user-picy {
@@ -1001,7 +1001,6 @@ main {
 	object-fit: cover;
 }
 .post-st {
-	float: right;
 	margin-top: 5px;
 }
 .post-st ul li {
@@ -1343,9 +1342,9 @@ main {
 }
 .like-com li span {
 	color: #ffffff;
-	font-size: 13px;
-	width: 30px;
-	height: 30px;
+	font-size: 15px;
+	width: 25px;
+	height: 25px;
 	background-color: #34baeb;
 	line-height: 30px;
 	-webkit-border-radius: 30px;
@@ -4120,7 +4119,9 @@ a:hover {
 .chat-list {
 	float: left;
 	width: 100%;
+	overflow: auto;
 	min-height: 390px;
+	max-height: 390px;
 }
 .conv-list {
 	float: left;
@@ -4213,6 +4214,7 @@ a:hover {
 .chat-hist {
 	float: left;
 	width: 100%;
+	overflow:auto;
 	background-color: #fff;
 	height: 280px;
 }
@@ -4309,6 +4311,7 @@ a:hover {
 	float: left;
 	width: 100%;
 	border-top: 1px solid #e6e6e6;
+	background-color:white;
 	padding-top: 15px;
 }
 .typing-msg form {
@@ -5000,9 +5003,10 @@ a:hover {
 	padding: 20px;
 }
 .message-inner-dt > img {
-	display: inline-block;
-	width: auto;
-	margin-right: 5px;
+	float: right;
+	position: relative;
+	top: 3px;
+	padding-left: 5px;
 }
 .message-dt > span {
 	color: #b2b2b2;
@@ -5032,6 +5036,13 @@ a:hover {
 	padding: 10px 15px;
 	float: left;
 }
+.message-dt.st4 .message-inner-dt > p {
+	background-color: #34baeb;
+	color: #fff;
+	width: auto;
+	padding: 10px 15px;
+	float: left;
+}
 .message-dt.st3 .message-inner-dt > p img {
 	float: right;
 	position: relative;
@@ -5044,7 +5055,9 @@ a:hover {
 .messages-line {
 	float: left;
 	width: 100%;
-	height: 604px;
+	overflow:auto;
+	min-height:100px;
+	max-height: 604px;
 }
 
 /* ============== message-send-area ============ */

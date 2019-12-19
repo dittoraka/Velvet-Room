@@ -80,10 +80,10 @@
 										</div>
 									</form>
 									<div class="login-resources">
-										<h4>Login Via Social Account</h4>
-										<ul>
+										{{-- <h4>Login Via Social Account</h4> --}}
+										{{-- <ul>
 											<li><a href="#" title="" class="goo"><i class="fa fa-google-plus"></i>Login Via Google</a></li>
-										</ul>
+										</ul> --}}
 									</div><!--login-resources end-->
 								</div><!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">

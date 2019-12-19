@@ -13,7 +13,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="company_profile_info">
                                 <div class="company-up-info">
-                                    <img src="images/resources/pf-icon1.png" alt="">
+                                    <img src="profil/{{$item->profil_picture}}" alt="">
                                     <h3>{{$item->nickname}}</h3>
                                     <ul>
                                         <?php $bol = true;?>
@@ -27,11 +27,11 @@
                                         @endif
                                         <li><a href="#" title="" class="message-us"><i class="fa fa-envelope"></i></a></li>
                                     </ul>
-                                </div>
                                 <form action="/user-profile">
                                     <input type="hidden" value={{$item->username}} name="username">
-                                    <button type="submit" value="submit" class="col-lg-12 no-pdd follow">View Profile</button>
+                                    <button type="submit" value="submit" class="btn btn-outline-secondary" style="margin-top:15px;">View Profile</button>
                                 </form>
+                                </div>
                             </div><!--company_profile_info end-->
                         </div>
                     @endif

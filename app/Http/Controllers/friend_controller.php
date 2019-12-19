@@ -17,6 +17,26 @@ class friend_controller extends Controller
                 ->where('id_user',$data1[0]->id_user)->get();
         return view('user.profiles',['user'=>$data,'friend'=>$friend]);
     }
+    public function tampilinMessage(){
+        $user = DB::table('user')->get();
+        $data = DB::table('user')->get();
+        $data1 = DB::table('user')
+                ->where('username', session('nama'))->get();
+        $msg = DB::table('message')->get();
+        return view('user.messages',['msg'=>$msg,'friend'=>$data,'kita'=>$data1,'user'=>$user]);  
+    }
+    public function liatChat(Request $request){
+        $id = $request->input('id');
+        $request->session()->put('friend',$id);
+        $user = DB::table('user')->get();
+        $data = DB::table('user')
+                ->where('id_user', $id)->get();
+        $data1 = DB::table('user')
+                ->where('username', session('nama'))->get();
+        $msg = DB::table('message')
+        ->orwhere('id_user',session('iduser'))->orwhere('id_user',$id)->get();
+        return view('user.messages',['msg'=>$msg,'friend'=>$data,'kita'=>$data1,'user'=>$user]);    
+    }
     public function liatuser(Request $request){
         $username = $request->input('username');
         $request->session()->put('friend',$username);
@@ -33,7 +53,11 @@ class friend_controller extends Controller
         if($post==null){
             $post = array(array('id_user'=>0));
         }
-        return view('user.user-profile',['user'=>$data,'friend'=>$friend,'post'=>$post]);
+        $komen = DB::table('post_comment')->get();
+        if($komen==null){
+            $komen = array(array('id_user'=>0));
+        }
+        return view('user.user-profile',['user'=>$data,'friend'=>$friend,'post'=>$post,'komen'=>$komen]);
     }
     public function addfriend(){
         $yangdiadd = session('friend');
@@ -47,7 +71,60 @@ class friend_controller extends Controller
         ); 
         DB::table('friends')->insert(
             ['id_user'=>$data[0]->id_user,'id_friend'=>$data1[0]->id_user]
-    ); 
-        return view('user.user-profile',['user'=>$data]);           
+         ); 
+        $post = DB::table('user_post')->where('id_user',$data[0]->id_user)->get();
+        if($post==null){
+            $post = array(array('id_user'=>0));
+        }
+        $friend = DB::table('friends')->get();
+        $komen = DB::table('post_comment')->get();
+        $achiev = DB::table('user_achievment')->get();
+        $dobel = false;
+        foreach ($achiev as $key) {
+            if($key->id_user == session('iduser') && $key->id_achievment == 2){
+                $dobel = true;
+            }
+        }
+        if(!$dobel){
+            DB::table('user_achievment')->insert(['id_user'=>session('iduser'),'id_achievment'=>2]);
+        }
+        return view('user.user-profile',['user'=>$data,'friend'=>$friend,'post'=>$post,'komen'=>$komen]);           
+    }
+    public function delfriend(){
+        $yangdiadd = session('friend');
+        $yangadd = session('nama');
+        $data = DB::table('user')
+                ->where('username',$yangdiadd)->get();
+        $data1 = DB::table('user')
+                ->where('username',$yangadd)->get();
+        DB::table('friends')->where('id_user',$data[0]->id_user)->where('id_friend',$data1[0]->id_user)->delete();
+        DB::table('friends')->where('id_user',$data1[0]->id_user)->where('id_friend',$data[0]->id_user)->delete();
+        $post = DB::table('user_post')->where('id_user',$data[0]->id_user)->get();
+        $friend = DB::table('friends')->get();
+        $komen = DB::table('post_comment')->get();
+        return redirect()->route('profilorang');  
+    }
+    public function sendChat(Request $request){
+        $data = DB::table('user')
+                ->where('id_user', session('friend'))->get();
+        $data1 = DB::table('user')
+                ->where('username', session('nama'))->get();
+        $user = DB::table('user')->get();
+        $penerima_id = DB::table('user')
+        ->where('id_user', session('friend'))->get('id_user');
+        DB::table('message')->insert(
+                ['id_user'=>session('iduser'),'id_penerima'=>session('friend'),'message'=>$request->input('message')]);
+        $msg = DB::table('message')->get();
+        $achiev = DB::table('user_achievment')->get();
+        $dobel = false;
+        foreach ($achiev as $key) {
+            if($key->id_user == session('iduser') && $key->id_achievment == 6){
+                $dobel = true;
+            }
+        }
+        if(!$dobel){
+            DB::table('user_achievment')->insert(['id_user'=>session('iduser'),'id_achievment'=>6]);
+        }
+        return view('user.messages',['msg'=>$msg,'friend'=>$data,'kita'=>$data1,'user'=>$user]);   
     }
 }

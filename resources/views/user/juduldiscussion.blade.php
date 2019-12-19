@@ -73,7 +73,7 @@
                                             </div>
                                             <form action="/getdiscussion" method="get">
                                                 <input type="hidden" name="iddis" value="{{$item->id_discussion}}">
-                                                <button type="submit">Detail</button>
+                                                <button type="submit" class="btn btn-warning" style="color:white;">Detail</button>
                                             </form>
                                         </div>    
                                     @endif

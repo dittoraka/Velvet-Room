@@ -21,17 +21,15 @@ class login_controller extends Controller
         if($password == $cpassword){
             if($validatedata){
                 DB::table('user')->insert(
-                    ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1']
+                    ['email'=>$email,'nickname'=>$nickname,'username'=>$username,'password'=>$password,'id_avatar'=>'1','profil_picture'=>"far-circle.png",'back_image'=>'cover-img.jpg']
                 );
             }
         }
-        
         return redirect()->route('loginuser');
     }
     public function login(Request $request){
         $username = $request->input('username');
         $password = $request->input('password');
-        $id = 0;
         $data = DB::table('user')->get();
         $booleans = false;
         if($username == "admin" && $password == "admin"){
@@ -41,12 +39,18 @@ class login_controller extends Controller
             if($isi->username == $username && $isi->password == $password){
                 $booleans = true;
                 $id = $isi->id_user;
+                $pic = $isi->profil_picture;
+                $request->session()->put('nickname',$isi->nickname);
+                $request->session()->put('back',$isi->back_image);
             }
         }
         if($booleans){
             $request->session()->put('nama',$username);
+            $request->session()->put('profil',$pic);
             $request->session()->put('iduser',$id);
             return redirect()->route('halaman');
+        }else{
+            return redirect()->route('loginuser');
         }
     }
 }

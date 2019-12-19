@@ -14,7 +14,26 @@
 				</div>
 			</div>
 		</section>
-
+        <div class="post-popup pst-pj">
+                <div class="post-project">
+                    <h3>Post a Status</h3>
+                    <div class="post-project-fields">
+                        <form action="/grouppost">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <textarea name="description" placeholder="Tell about Your Day here .."></textarea>
+                                </div>
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <li><button class="active" type="submit" value="post">Post</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!--post-project-fields end-->
+                    <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+                </div><!--post-project end-->
+            </div>
 
 		<main>
 			<div class="main-section">
@@ -73,7 +92,7 @@
 							<div class="col-lg-6">
 								<div class="main-ws-sec">
 									<div class="user-tab-sec rewivew">
-										<h3>Nama Group</h3>
+										<h3>{{$group[0]->nama}}</h3>
                                             <div class="tab-feed st2 settingjb">
 											<ul>
 												<li data-tab="feed-dd" class="active">
@@ -99,8 +118,82 @@
 											</ul>
 										</div><!-- tab-feed end-->
 									</div><!--user-tab-sec end-->
-									
-									<div class="product-feed-tab current" id="feed-dd">
+									@if ($komen)
+                                    <div class="post-topbar">
+                                            <div class="user-picy">
+                                                <img src="images/resources/far-circle.png" alt="">
+                                            </div>
+                                            <div class="post-st">
+                                                <ul>
+                                                    <li><a class="post_project" href="#" title="">Post Status</a></li>
+                                                    {{-- <li><a class="post-jb active" href="#" title="">Post a Discussion</a></li> --}}
+                                                </ul>
+                                            </div><!--post-st end-->
+                                        </div>
+                                    @endif
+                                    @foreach ($post as $item)
+                                    @if ($item==null)
+                                        
+                                    @else
+                                    <div class="post-bar">
+                                            <div class="post_topbar">
+                                                    <div class="usy-dt">
+                                                        <img src="images/resources/us-pic.png" alt="">
+                                                        <div class="usy-name">
+                                                            <h3>{{$item->nama_user}}</h3>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ed-opts">
+                                                        <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                        <ul class="ed-options">
+                                                            <li><a href="#" title="">Edit Post</a></li>
+                                                            <li><a href="#" title="">Unsaved</a></li>
+                                                            <li><a href="#" title="">Unbid</a></li>
+                                                            <li><a href="#" title="">Close</a></li>
+                                                            <li><a href="#" title="">Hide</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="job_descp">
+                                                    <p>{{$item->post}}</p>
+                                                </div>
+                                                <div class="job-status-bar">
+                                                    <ul class="like-com">
+                                                        <li>
+                                                            <a href="#"><i class="fas fa-heart"></i> Like</a>
+                                                            <img src="images/liked-img.png" alt="">
+                                                            <span>{{$item->likes}}</span>
+                                                        </li> 
+                                                        <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{$item->likes}}</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    @foreach ($comment as $ko)
+                                                        @if ($ko->id_post == $item->id_post)
+                                                            <h2 style="font-weight:bold">{{$ko->nickname}}<h2>
+                                                            {{$ko->comments}}
+                                                        @endif
+                                                    </br>
+                                                    @endforeach
+                                                </div>
+                                                <div class="post-topbar">
+                                                        <form action="/ngomen">
+                                                            <input type="text" name="komen" placeholder="Write something.">
+                                                            <input type="hidden" name="id" value={{$item->id_post}}>
+                                                            <button type="submit">Comment</button>
+                                                        </form><!--post-st end-->
+                                                </div>
+                                            </div>     
+                                    @endif
+                                    @endforeach
+                                    <div class="process-comm">
+                                            <div class="spinner">
+                                                <div class="bounce1"></div>
+                                                <div class="bounce2"></div>
+                                                <div class="bounce3"></div>
+                                            </div>
+                                        </div> 
+									{{-- <div class="product-feed-tab current" id="feed-dd">
 										<div class="posts-section">
 											<div class="post-bar">
 												<div class="post_topbar">
@@ -199,7 +292,7 @@
                                                     </div>
                                             </div><!--post-bar end-->
 										</div><!--posts-section end-->
-                                    </div><!--product-feed-tab end-->
+                                    </div><!--product-feed-tab end--> --}}
                                     
 									<div class="product-feed-tab" id="info-dd">
                                             <div class="portfolio-gallery-sec">

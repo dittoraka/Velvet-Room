@@ -1,6 +1,5 @@
 @extends('template')
 @section('isicontent')
-    
 		<section class="messages-page">
 			<div class="container">
 				<div class="messages-sec">
@@ -16,94 +15,27 @@
 								</div><!--msg-title end-->
 								<div class="messages-list">
 									<ul>
-										<li class="active">
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img1.png" alt="">
-													<span class="msg-status"></span>
-												</div>
-												<div class="usr-mg-info">
-													<h3>John Doe</h3>
-													<p>Lorem ipsum dolor <img src="images/smley.png" alt=""></p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-												<span class="msg-notifc">1</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img2.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>David Vane</h3>
-													<p>Vestibulum ac diam..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img3.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Nancy Dilan</h3>
-													<p>Quam vehicula.</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img4.png" alt="">
-													<span class="msg-status"></span>
-												</div>
-												<div class="usr-mg-info">
-													<h3>Norman Kenney</h3>
-													<p>Nulla quis lorem ut..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img5.png" alt="">
-													<span class="msg-status"></span>
-												</div>
-												<div class="usr-mg-info">
-													<h3>James Dilan</h3>
-													<p>Vivamus magna just..</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img6.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Mike Dorn</h3>
-													<p>Praesent sapien massa.</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
-										<li>
-											<div class="usr-msg-details">
-												<div class="usr-ms-img">
-													<img src="images/resources/m-img7.png" alt="">
-												</div>
-												<div class="usr-mg-info">
-													<h3>Patrick Morison</h3>
-													<p>Convallis a pellente...</p>
-												</div><!--usr-mg-info end-->
-												<span class="posted_time">1:55 PM</span>
-											</div><!--usr-msg-details end-->
-										</li>
+									@foreach ($user as $item)
+										@if ($item->username <> session('nama'))
+											<?php $bol = true;?>
+												<form action="/show-chat">
+													<button type="submit"class="btn btn-primary-outline">
+														<li>
+															<div class="usr-msg-details">
+																<div class="usr-ms-img">
+																	<img src="profil/{{$item->profil_picture}}" alt="">
+																</div>
+															<div class="usr-mg-info">
+																<h3>{{$item->nickname}}</h3>
+																<p></p>
+																	<input type="hidden" value={{$item->id_user}} name="id">
+																</div><!--usr-mg-info end-->
+															</div><!--usr-msg-details end-->
+														</li>
+													</button>
+												</form>
+										@endif
+									@endforeach									
 									</ul>
 								</div><!--messages-list end-->
 							</div><!--msgs-list end-->
@@ -113,98 +45,47 @@
 								<div class="message-bar-head">
 									<div class="usr-msg-details">
 										<div class="usr-ms-img">
-											<img src="images/resources/m-img1.png" alt="">
+											<img src="profil/{{$friend[0]->profil_picture}}" alt="">
 										</div>
 										<div class="usr-mg-info">
-											<h3>John Doe</h3>
-											<p>Online</p>
+											<h3><?php echo $friend[0]->nickname?></h3>
+											<p>Offline</p>
 										</div><!--usr-mg-info end-->
 									</div>
 									<a href="#" title=""><i class="fa fa-ellipsis-v"></i></a>
 								</div><!--message-bar-head end-->
 								<div class="messages-line">
-									<div class="main-message-box">
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div><!--messg-usr-img end-->
-										<div class="message-dt">
-											<div class="message-inner-dt img-bx">
-												<img src="images/resources/mt-img1.png" alt="">
-												<img src="images/resources/mt-img2.png" alt="">
-												<img src="images/resources/mt-img3.png" alt="">
-											</div><!--message-inner-dt end-->
-											<span>Sat, Aug 23, 1:08 PM</span>
-										</div><!--message-dt end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box ta-right">
-										<div class="message-dt">
-											<div class="message-inner-dt">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											</div><!--message-inner-dt end-->
-											<span>Sat, Aug 23, 1:08 PM</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box st3">
-										<div class="message-dt st3">
-											<div class="message-inner-dt">
-												<p>Cras ultricies ligula.<img src="images/smley.png" alt=""></p>
-											</div><!--message-inner-dt end-->
-											<span>5 minutes ago</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box ta-right">
-										<div class="message-dt">
-											<div class="message-inner-dt">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											</div><!--message-inner-dt end-->
-											<span>Sat, Aug 23, 1:08 PM</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box st3">
-										<div class="message-dt st3">
-											<div class="message-inner-dt">
-												<p>Lorem ipsum dolor sit amet</p>
-											</div><!--message-inner-dt end-->
-											<span>2 minutes ago</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box ta-right">
-										<div class="message-dt">
-											<div class="message-inner-dt">
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum congue leo eget malesuada. Vivamus suscipit tortor eget felis porttitor.</p>
-											</div><!--message-inner-dt end-->
-											<span>Sat, Aug 23, 1:08 PM</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img2.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-									<div class="main-message-box st3">
-										<div class="message-dt st3">
-											<div class="message-inner-dt">
-												<p>....</p>
-											</div><!--message-inner-dt end-->
-											<span>Typing...</span>
-										</div><!--message-dt end-->
-										<div class="messg-usr-img">
-											<img src="images/resources/m-img1.png" alt="">
-										</div><!--messg-usr-img end-->
-									</div><!--main-message-box end-->
-								</div><!--messages-line end-->
+									@foreach ($msg as $items)
+										@if ($items->id_user == session('iduser') && $items->id_penerima == session('friend'))
+											<div class="main-message-box ta-right">
+												<div class="message-dt st4" style="float:right;">
+													<div class="message-inner-dt">
+														<p><?php echo $items->message?></p>
+													</div><!--message-inner-dt end-->
+													<span>...</span>
+												</div><!--message-dt end-->
+												<div class="messg-usr-img">
+														<img src="profil/{{$kita[0]->profil_picture}}" alt="">
+												</div><!--messg-usr-img end-->
+											</div><!--main-message-box end-->
+										@endif
+										@if ($items->id_user == session('friend') && $items->id_penerima == session('iduser'))								
+											<div class="main-message-box st3">
+												<div class="message-dt st3">
+													<div class="message-inner-dt">
+														<p><?php echo $items->message?></p>
+													</div><!--message-inner-dt end-->
+													<span>...</span>
+												</div><!--message-dt end-->
+												<div class="messg-usr-img">
+													<img src="profil/{{$friend[0]->profil_picture}}" alt="">
+												</div><!--messg-usr-img end-->
+											</div><!--main-message-box end-->
+										@endif
+									@endforeach
+								</div>
 								<div class="message-send-area">
-									<form>
+									<form action="/send-chat">
 										<div class="mf-field">
 											<input type="text" name="message" placeholder="Type a message here">
 											<button type="submit">Send</button>
