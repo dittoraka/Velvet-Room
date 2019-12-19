@@ -58,11 +58,11 @@
 									@foreach ($msg as $items)
 										@if ($items->id_user == session('iduser') && $items->id_penerima == session('friend'))
 											<div class="main-message-box ta-right">
-												<div class="message-dt st4" style="float:right;">
+												<div class="message-dt">
 													<div class="message-inner-dt">
 														<p><?php echo $items->message?></p>
+														<span>...</span>
 													</div><!--message-inner-dt end-->
-													<span>...</span>
 												</div><!--message-dt end-->
 												<div class="messg-usr-img">
 														<img src="profil/{{$kita[0]->profil_picture}}" alt="">

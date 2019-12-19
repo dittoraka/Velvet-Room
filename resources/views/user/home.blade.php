@@ -101,6 +101,42 @@
                                                                 </li>
                                                     </ul>
                                                 </div>
+                                                <div class="ed-opts">
+                                                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                    <ul class="ed-options">
+                                                            <li>
+                                                                    <form action="/editpost">
+                                                                    <input type="hidden" name="id" value={{$item->id_post}}>
+                                                                    <button type="submit" class="btn btn-primary-outline">Edit</a>
+                                                                    </form>
+                                                            </li>
+                                                            <li>
+                                                            <form action="/deletepost">
+                                                                <input type="hidden" name="id" value={{$item->id_post}}>
+                                                                <button type="submit" class="btn btn-primary-outline">Delete</a>
+                                                                </form>
+                                                            </li>
+                                                                <li>
+                                                                        <form action="/reportpost">
+                                                                        <input type="hidden" name="id" value={{$item->id_post}}>
+                                                                        <button type="submit" class="btn btn-primary-outline">Report</a>
+                                                                        </form>
+                                                                </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="job_descp">
+                                                    @if ($item->post!=null && $item->gambar!=null )
+                                                    <span style="word-wrap:break-word">{{$item->post}}<span>
+                                                    <span><img src="upload/{{$item->gambar}}" alt=""></span>
+                                                @else
+                                                    <span>{{$item->post}}</span>
+                                                @endif
+                                                @if ($item->post == null)
+                                                    <span><img src="upload/{{$item->gambar}}" alt=""></span>
+                                                @endif
+                                                
+                                                
                                             </div>
                                             <div class="job_descp">
                                                     @if ($item->post!=null && $item->gambar!=null )
@@ -133,6 +169,8 @@
                                                                     @endif
                                                             </form>
                                                         
+                                                        <img src="images/liked-img.png" alt="">
+                                                        <span>{{$item->likes}}</span>
                                                     </li> 
                                                     <li><a href="#" class="com"><i class="fas fa-comment-alt"></i> Comment {{$item->likes}}</a></li>
                                                 </ul>
@@ -169,9 +207,9 @@
                                             </div>
                                             <div class="post-topbar">
                                                     <form action="/komen">
-                                                        <input type="text" name="komen" placeholder=" Write something." style="width:350px; border:1px solid lightgray; border-radius:8px;">
+                                                        <input type="text" name="komen" placeholder="Write something.">
                                                         <input type="hidden" name="id" value={{$item->id_post}}>
-                                                        <button type="submit" class="btn btn-outline-info btn-sm" style="margin-left:8px;">Comment</button>
+                                                        <button type="submit">Comment</button>
                                                     </form><!--post-st end-->
                                             </div>
                                         </div>     

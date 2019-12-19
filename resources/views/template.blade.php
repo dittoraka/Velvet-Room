@@ -196,8 +196,9 @@
 					</div><!--menu-btn end-->
 					<div class="user-account">
 						<div class="user-info">
-							<img src="profil/{{session("profil")}}" style="width:35px;height:35px" alt="">
+							<img src="profil/{{session("profil")}}" style="width:60px;height:60px" alt="">
 							<a href="#" title="">Option</a>
+							<i class="la la-sort-down"></i>
 						</div>
 						<div class="user-account-settingss">
 							<h3>Online Status</h3>

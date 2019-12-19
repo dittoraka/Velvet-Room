@@ -35,6 +35,23 @@ class post_controller extends Controller
     }
     public function chatbox(){
 
+        $friend = DB::table('friends')
+                ->where('id_user', $data1[0]->id_user)->get();
+        // $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->get();
+        if($friend){
+            $data = DB::table('user_post')->get();
+        }else{
+            $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->orwhere('id_user',$friend)->get();
+        }
+        
+        $komen = DB::table('post_comment')->get();
+        if($komen==null){
+            $komen = array(array('id_user'=>0));
+        }
+        if($data==null){
+            $data = array(array('id_user'=>0));
+        }
+        return view('user.home',['post'=>$data,'komen'=>$komen,'teman'=>$friend]);
     }
     public function loadpostprofil(){
         $data1 = DB::table('user')
@@ -127,6 +144,10 @@ class post_controller extends Controller
         request()->picture->move(public_path('background'), $imageName);
         $request->session()->put('back',$imageName);
         return redirect()->route('profil');
+        DB::table('user_post')->insert(
+            ['id_user'=>$data1[0]->id_user,'post'=>$post,'likes'=>0,'link'=>'','nama_user'=>session('nickname')]
+        );
+        return redirect()->route('halaman');
     }
     public function ngomen(Request $request){
         $id=$request->input('id');

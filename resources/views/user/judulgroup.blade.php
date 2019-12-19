@@ -55,17 +55,17 @@
                                         @if ($bol)
                                             <form action="/joingroup">
                                                 <input type="hidden" value={{$item->id_group}} name="id">
-                                                <button type="submit" value="submit" class="btn btn-outline-warning">Join Group</button>
+                                                <button type="submit" value="submit" class="col-lg-12 no-pdd follow">Join Group</button>
                                             </form>
                                         @else
-                                            <li><a href="#" title="" style="color:green;">Already Joined</a></li>
+                                            <li><a href="#" title="" class="follow">Joined Group</a></li>
                                         @endif
-                                    <form action="/detailgroup">
-                                        <input type="hidden" value={{$item->id_group}} name="nama">
-                                    <button type="submit" value="submit" class="btn btn-outline-secondary" style="margin-top:15px;">View Group</button>
-                                    </form>
                                     </ul>
                                 </div>
+                                <form action="/detailgroup">
+                                    <input type="hidden" value={{$item->id_group}} name="nama">
+                                    <button type="submit" value="submit" class="col-lg-12 no-pdd follow">View Group</button>
+                                </form>
                             </div><!--company_profile_info end-->
                         </div>
                 @endforeach
