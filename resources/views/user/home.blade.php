@@ -202,7 +202,6 @@
                                                             </div>  
                                                         </div> 
                                                     @endif
-                                                </br>
                                                 @endforeach
                                             </div>
                                             <div class="post-topbar">
