@@ -19,9 +19,7 @@ Route::prefix('users')->group(function () {
 });
 Route::get('home','post_controller@loadpost')->name('halaman');
 Route::get('postdis','post_controller@postdiss');
-Route::get('achievement', function () {
-    return view('user.achievement');
-});
+Route::get('achievement', 'achiev_controller@loadachiev');
 Route::get('profiles', 'friend_controller@tampilin')->name('profilorang');
 Route::get('showMessage', 'friend_controller@tampilinMessage');
 Route::get('discussion', 'master_controller@juduldis')->name('discus');

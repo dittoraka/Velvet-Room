@@ -13,7 +13,6 @@ class post_controller extends Controller
     public function loadpost(){
         $data1 = DB::table('user')
                 ->where('username', session('nama'))->get();
-<<<<<<< HEAD
         $friend = DB::table('friends')->get();
         $data2 = DB::table('post_like')->get();
         // $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->get();
@@ -25,7 +24,6 @@ class post_controller extends Controller
     }
     public function chatbox(){
 
-=======
         $friend = DB::table('friends')
                 ->where('id_user', $data1[0]->id_user)->get();
         // $data = DB::table('user_post')->orwhere('id_user',$data1[0]->id_user)->get();
@@ -43,7 +41,6 @@ class post_controller extends Controller
             $data = array(array('id_user'=>0));
         }
         return view('user.home',['post'=>$data,'komen'=>$komen,'teman'=>$friend]);
->>>>>>> f53c38a80bbd66fa8711b250656538b9da3093d6
     }
     public function loadpostprofil(){
         $data1 = DB::table('user')
@@ -73,7 +70,6 @@ class post_controller extends Controller
             $imageName = time().'.'.request()->picture->getClientOriginalExtension();
             $data1 = DB::table('user')
                 ->where('username', session('nama'))->get();
-<<<<<<< HEAD
             DB::table('user_post')->insert(
                 ['id_user'=>$data1[0]->id_user,'post'=>$post,'likes'=>0,'link'=>'','nama_user'=>session('nickname'),'gambar'=>$imageName]
             );
@@ -116,12 +112,10 @@ class post_controller extends Controller
         request()->picture->move(public_path('background'), $imageName);
         $request->session()->put('back',$imageName);
         return redirect()->route('profil');
-=======
         DB::table('user_post')->insert(
             ['id_user'=>$data1[0]->id_user,'post'=>$post,'likes'=>0,'link'=>'','nama_user'=>session('nickname')]
         );
         return redirect()->route('halaman');
->>>>>>> f53c38a80bbd66fa8711b250656538b9da3093d6
     }
     public function ngomen(Request $request){
         $id=$request->input('id');
